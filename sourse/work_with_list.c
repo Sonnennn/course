@@ -189,64 +189,20 @@ void sort_by_ascending(Head *head,int field){
 void sort_by_descending(Head *head,int field){
     Node*temp=NULL;
     Node*swap1=NULL,*swap2=NULL;
-    float max=100000,temple;
-    int id;
     if (field==1){
-        for (int i=1;i<=head->cnt-1;i++){
-            for (int j=1;j<=head->cnt-1;j++){
-                swap1=select_by_id(head,j);
-                swap2=select_by_id(head,j+1);
-                if(swap1->weight<swap2->weight){
-                    swap_node(head,swap1,swap2);
-                }
-            }
-        }
+        sort_by_field(head, weight, swap1, swap2, <)
     }
-
-
     if (field==2){
-        for (int i=1;i<=head->cnt-1;i++){
-            for (int j=1;j<=head->cnt-1;j++){
-                swap1=select_by_id(head,j);
-                swap2=select_by_id(head,j+1);
-                if(swap1->calories<swap2->calories){
-                    swap_node(head,swap1,swap2);
-                }
-            }
-        }
+        sort_by_field(head, calories, swap1, swap2, <)
     }
     if (field==3){
-        for (int i=1;i<=head->cnt-1;i++){
-            for (int j=1;j<=head->cnt-1;j++){
-                swap1=select_by_id(head,j);
-                swap2=select_by_id(head,j+1);
-                if(swap1->micro[0]<swap2->micro[0]){
-                    swap_node(head,swap1,swap2);
-                }
-            }
-        }
+        sort_by_field(head, micro[0], swap1, swap2, <)
     }
     if (field==4){
-        for (int i=1;i<=head->cnt-1;i++){
-            for (int j=1;j<=head->cnt-1;j++){
-                swap1=select_by_id(head,j);
-                swap2=select_by_id(head,j+1);
-                if(swap1->micro[1]<swap2->micro[1]){
-                    swap_node(head,swap1,swap2);
-                }
-            }
-        }
+        sort_by_field(head, micro[1], swap1, swap2, <)
     }
     if (field==5){
-        for (int i=1;i<=head->cnt-1;i++){
-            for (int j=1;j<=head->cnt-1;j++){
-                swap1=select_by_id(head,j);
-                swap2=select_by_id(head,j+1);
-                if(swap1->micro[2]<swap2->micro[2]){
-                    swap_node(head,swap1,swap2);
-                }
-            }
-        }
+        sort_by_field(head, micro[2], swap1, swap2, <)
     }
 }
 

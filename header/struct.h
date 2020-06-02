@@ -11,8 +11,8 @@ typedef struct Node {
     char *name;
     char *type;
     int weight;
-    float calories;
-    float micro[3];
+    double calories;
+    double micro[3];
     struct Node *next; // указатель на следующий узел
     struct Node *prev;// указатель на предыдущий узел
 

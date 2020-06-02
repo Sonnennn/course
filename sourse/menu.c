@@ -135,7 +135,7 @@ void Menu_edit(Head *head){
     int id = 0;
     int flag=0;
     int temp_int;
-    float temp_float;
+    double temp_double;
     char *flag_temp=NULL;
     char *id_temp=NULL;
     char* str=NULL;
@@ -203,9 +203,9 @@ void Menu_edit(Head *head){
                 str=safe_scan_float();
                 printf("\n");
             }while(str==NULL);
-            temp_float=strtod(str,NULL);
+            temp_double=strtod(str, NULL);
             free(str);
-            node->calories=temp_float;
+            node->calories=temp_double;
         }
         if(flag==5){
             do{
@@ -213,9 +213,9 @@ void Menu_edit(Head *head){
                 str=safe_scan_float();
                 printf("\n");
             }while(str==NULL);
-            temp_float=strtod(str,NULL);
+            temp_double=strtod(str, NULL);
             free(str);
-            node->micro[0]=temp_float;
+            node->micro[0]=temp_double;
         }
         if(flag==6){
             do{
@@ -223,9 +223,9 @@ void Menu_edit(Head *head){
                 str=safe_scan_float();
                 printf("\n");
             }while(str==NULL);
-            temp_float=strtod(str,NULL);
+            temp_double=strtod(str, NULL);
             free(str);
-            node->micro[1]=temp_float;
+            node->micro[1]=temp_double;
         }
         if(flag==7){
             do{
@@ -233,9 +233,9 @@ void Menu_edit(Head *head){
                 str=safe_scan_float();
                 printf("\n");
             }while(str==NULL);
-            temp_float=strtod(str,NULL);
+            temp_double=strtod(str, NULL);
             free(str);
-            node->micro[2]=temp_float;
+            node->micro[2]=temp_double;
         }
 
 
@@ -313,5 +313,46 @@ void Menu_sort(Head *head){
         sort_by_ascending(head,flag);
     if(kind ==1)
         sort_by_descending(head,flag);
+
+
+
+}
+void Menu_search(Head *head){
+    int flag=0;
+    int kind=0;
+    char *kind_temp=NULL;
+    char* flag_temp=NULL;
+    printf("\n");
+    printf("What field should be sort:\n");
+    printf("1 - weight\n");
+    printf("2 - calories\n");
+    printf("3 - protein\n");
+    printf("4 - fat\n");
+    printf("5 - carbohydrates\n");
+    while ((flag > 5) || (flag < 1)) {
+        printf("Enter your choice:");
+        flag_temp=safe_scan_int();
+        flag=strtol(flag_temp,NULL,10);
+        free(flag_temp);
+        if (flag> 5 || flag < 1)
+            printf("wrong choice, try again\n");
+    }
+    printf("Kinds of sort:\n");
+    printf("1 - Descending\n");
+    printf("2 - Ascending\n");
+    while ((kind> 2) || (kind < 1)) {
+        printf("Enter your choice:");
+        kind_temp=safe_scan_int();
+        kind=strtol(kind_temp,NULL,10);
+        free(kind_temp);
+        if (kind >2 || kind < 1)
+            printf("wrong choice, try again\n");
+    }
+    if (kind==2)
+        sort_by_ascending(head,flag);
+    if(kind ==1)
+        sort_by_descending(head,flag);
+
+
 
 }

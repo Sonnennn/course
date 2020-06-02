@@ -139,7 +139,7 @@ char* safe_scan_int(){
         slen=strlen(str);
         for (int i = 0; i < slen-1; i++) {
             temp=str[i];
-            if (temp<48||temp>57)  n++;
+            if (temp<'0'||temp>'9')  n++;
         }
         if(n>0)
         {

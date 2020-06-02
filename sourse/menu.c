@@ -40,7 +40,7 @@ void Menu(Head *head) {// вывод меню действий
 
             kind[flag - 1](head);
             if (flag!=9) flag=0;
-        system("cls");
+        system("clear");
     }while (flag != 9);
 }
 
@@ -153,7 +153,7 @@ void Menu_edit(Head *head){
     printf("\n");
     node = select_by_id(head, id);// ищем на него указатель
     do{
-        system("cls");
+        system("clear");
         print_header();
         struct_out(node);
         printf("\n");

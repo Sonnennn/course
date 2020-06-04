@@ -1,4 +1,4 @@
-#pragma once
+
 #ifndef WORK_WITH_LIST_H
 #define WORK_WITH_LIST_H
 
@@ -28,5 +28,6 @@ void sort_by_descending(Head *head,int field);
 
 void swap_node(Head* head, Node* first, Node* second);
 void sort_by_ascending(Head *head,int field);
+Head *search_by_string(Head *head,int flag,char* string);
 
 #endif

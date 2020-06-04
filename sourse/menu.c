@@ -16,6 +16,7 @@ void Menu(Head *head) {// вывод меню действий
     kind[3] = Menu_copy;
     kind[4] = Menu_swap;
     kind[5] = Menu_sort;
+    kind[6] = Menu_search;
     kind[7] = save_file;
     kind[8] = Menu_end;
     do{// вывод возможных действий
@@ -317,42 +318,44 @@ void Menu_sort(Head *head){
 
 
 }
-void Menu_search(Head *head){
-    int flag=0;
-    int kind=0;
-    char *kind_temp=NULL;
-    char* flag_temp=NULL;
-    printf("\n");
-    printf("What field should be sort:\n");
-    printf("1 - weight\n");
-    printf("2 - calories\n");
-    printf("3 - protein\n");
-    printf("4 - fat\n");
-    printf("5 - carbohydrates\n");
-    while ((flag > 5) || (flag < 1)) {
-        printf("Enter your choice:");
-        flag_temp=safe_scan_int();
-        flag=strtol(flag_temp,NULL,10);
-        free(flag_temp);
-        if (flag> 5 || flag < 1)
-            printf("wrong choice, try again\n");
-    }
-    printf("Kinds of sort:\n");
-    printf("1 - Descending\n");
-    printf("2 - Ascending\n");
-    while ((kind> 2) || (kind < 1)) {
-        printf("Enter your choice:");
-        kind_temp=safe_scan_int();
-        kind=strtol(kind_temp,NULL,10);
-        free(kind_temp);
-        if (kind >2 || kind < 1)
-            printf("wrong choice, try again\n");
-    }
-    if (kind==2)
-        sort_by_ascending(head,flag);
-    if(kind ==1)
-        sort_by_descending(head,flag);
+void Menu_search(Head *head) {
+    Head *new_head = NULL;
+    int flag = 0;
+    char *flag_temp = NULL;
+    char *search;
+    do {
+        printf("\n");
+        printf("What field you wanna search by :\n");
+        printf("1 - Section\n");
+        printf("2 - Product\n");
+        printf("3 - Weight\n");
+        printf("4 - Calories\n");
+        printf("5 - Protein\n");
+        printf("6 - Fat\n");
+        printf("7 - Carbohydrates\n");
+        printf("8 -  Start search\n");
+        while ((flag > 8) || (flag < 1)) {
+            printf("Enter your choice:");
+            flag_temp = safe_scan_int();
+            flag = strtol(flag_temp, NULL, 10);
+            free(flag_temp);
+            if (flag > 8 || flag < 1)
+                printf("wrong choice, try again\n");
+        }
+        if (flag == 1) {
+            printf("searching section:");
+                search = safe_scan_string();
+            printf("%s",search);
 
-
-
+            if (new_head == NULL) {
+                new_head = search_by_string(head, 1, search);
+            } else new_head = search_by_string(new_head, 2, search);
+        }
+        if (flag!=8) flag=0;
+    }while(flag!=8);
+    if(new_head->cnt!=0){
+    Print_Node(new_head);
+    Menu(new_head);
+    Free_Node(new_head);}
+    else(printf ("Nothing was found"));
 }

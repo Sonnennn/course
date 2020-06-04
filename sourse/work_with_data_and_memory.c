@@ -195,6 +195,7 @@ char* safe_scan_string(){
     int n=0;
     int temp;
     unsigned int slen;
+
     do{
         str=malloc(100* sizeof(char));
         if(str!=NULL) {
@@ -206,6 +207,7 @@ char* safe_scan_string(){
                 temp=str[i];
                 if (temp>=48&&temp<=57)n++;
             }
+
             if(str[0]==' ')n++;
             if(str[strlen(str)-2]==' ')n++;
             if(n>0)
@@ -216,7 +218,6 @@ char* safe_scan_string(){
             }
         }} while (n>0);
     str[strlen(str)-1]='\0';
-
 
     return(str);
 }

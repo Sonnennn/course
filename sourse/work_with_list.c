@@ -2,6 +2,7 @@
 #include "../header/struct.h"
 #include "../header/output.h"
 #include "../header/work_with_list.h"
+#include "../header/work_with_data_and_memory.h"
 Node *select_by_id(Head *head, int n) { // поиск нужного узла по номеру
     Node *node;
     int k;
@@ -124,70 +125,24 @@ void copy_node(Head *head, Node *new_node, int k) {// копирование д�
 
 
 void sort_by_ascending(Head *head,int field){
-    Node*temp=NULL;
     Node*swap1=NULL,*swap2=NULL;
-    float max=100000,temple;
-    int id;
     if (field==1){
-        for (int i=1;i<=head->cnt-1;i++){
-            for (int j=1;j<=head->cnt-1;j++){
-                swap1=select_by_id(head,j);
-                swap2=select_by_id(head,j+1);
-                if(swap1->weight>swap2->weight){
-                    swap_node(head,swap1,swap2);
-                }
-            }
-        }
+        sort_by_field(head, weight, swap1, swap2, >)
     }
-
-
     if (field==2){
-        for (int i=1;i<=head->cnt-1;i++){
-            for (int j=1;j<=head->cnt-1;j++){
-                swap1=select_by_id(head,j);
-                swap2=select_by_id(head,j+1);
-                if(swap1->calories>swap2->calories){
-                    swap_node(head,swap1,swap2);
-                }
-            }
-        }
+        sort_by_field(head, calories, swap1, swap2, >)
     }
     if (field==3){
-        for (int i=1;i<=head->cnt-1;i++){
-            for (int j=1;j<=head->cnt-1;j++){
-                swap1=select_by_id(head,j);
-                swap2=select_by_id(head,j+1);
-                if(swap1->micro[0]>swap2->micro[0]){
-                    swap_node(head,swap1,swap2);
-                }
-            }
-        }
+        sort_by_field(head, micro[0], swap1, swap2, >)
     }
     if (field==4){
-        for (int i=1;i<=head->cnt-1;i++){
-            for (int j=1;j<=head->cnt-1;j++){
-                swap1=select_by_id(head,j);
-                swap2=select_by_id(head,j+1);
-                if(swap1->micro[1]>swap2->micro[1]){
-                    swap_node(head,swap1,swap2);
-                }
-            }
-        }
+        sort_by_field(head, micro[1], swap1, swap2, >)
     }
     if (field==5){
-        for (int i=1;i<=head->cnt-1;i++){
-            for (int j=1;j<=head->cnt-1;j++){
-                swap1=select_by_id(head,j);
-                swap2=select_by_id(head,j+1);
-                if(swap1->micro[2]>swap2->micro[2]){
-                    swap_node(head,swap1,swap2);
-                }
-            }
-        }
+        sort_by_field(head, micro[2], swap1, swap2, >)
     }
 }
 void sort_by_descending(Head *head,int field){
-    Node*temp=NULL;
     Node*swap1=NULL,*swap2=NULL;
     if (field==1){
         sort_by_field(head, weight, swap1, swap2, <)
@@ -348,4 +303,57 @@ if (div>1){
     second->id=id;
 
 
+}
+Head *search_by_string(Head *head,int flag,char* string){
+    Head* new_head=NULL;
+    Node* temp=NULL;
+    Node* temp_prev=NULL;
+    Node* new_node=NULL;
+    char** node_dates=NULL;
+    int count=0;
+    if (flag==1){
+        new_head=make_head();
+        temp=head->first;
+        while(temp!=NULL){
+            if (strstr(temp->name,string)!=NULL){
+                count++;
+                node_dates=scan_date(temp);
+                new_node = create_node(node_dates, count);
+                if (count==1){
+                    new_head->first=new_node;
+                    new_node->prev=NULL;
+                    new_head->cnt=count;
+                }
+                if( count>1){
+                    temp_prev->next=new_node;
+                    new_node->prev=temp_prev;
+
+                }
+                temp_prev=new_node;
+
+            }
+            temp=temp->next;
+        }
+        new_head->last=temp_prev;
+        new_head->last->next=NULL;
+        new_head->cnt=count;
+    }
+    if(flag==2){
+        temp=head->first;
+        while(temp!=NULL){
+            if (strstr(string,temp->name)==NULL){
+                delete_selected(head,temp);
+            }
+            temp=temp->next;
+        }
+
+    }
+    printf("%d",new_head->cnt);
+    if (new_head->cnt==0)
+    {
+        free(new_head);
+        new_head=NULL;
+    }
+
+    return(new_head);
 }

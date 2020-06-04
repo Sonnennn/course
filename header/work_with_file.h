@@ -1,5 +1,5 @@
 
-#pragma once
+
 #ifndef WORK_WITH_FILE_H
 #define WORK_WITH_FILE_H
 

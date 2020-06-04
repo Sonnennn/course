@@ -1,4 +1,4 @@
-#pragma once
+
 #ifndef WORK_WITH_DATA_AND_MEMORY_H
 #define WORK_WITH_DATA_AND_MEMORY_H
 

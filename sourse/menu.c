@@ -557,6 +557,7 @@ void Menu_search(Head *head) {
 
 Head *Menu_add_first() {
     Head *head = NULL;
+    clear();
     head = make_head();
     char **new_node = NULL;
     printf("Add your first node\n");

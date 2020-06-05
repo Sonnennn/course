@@ -93,11 +93,11 @@ void Menu_add(Head *head) {// меню для операции добавлен�
     int id = 0;
     char *id_temp = NULL;
     printf("which node id you wanna put to:");
-    while ((id > head->cnt) || (id < 1)) {
+    while ((id > head->cnt+1) || (id < 1)) {
         id_temp = safe_scan_int();
         id = strtol(id_temp, NULL, 10);
         free(id_temp);// считываем номер узла после которого нужно добавить
-        if (id > head->cnt || id < 1) {
+        if (id > head->cnt +1|| id < 1) {
             printf("wrong node, try again\n");
             printf("which node id you wanna put to:");
         }

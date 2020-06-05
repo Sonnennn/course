@@ -26,3 +26,6 @@ void Print_Node(Head *head) {// вывод списка
     }
     printf("\n");
 }
+void Print_help(){
+
+}

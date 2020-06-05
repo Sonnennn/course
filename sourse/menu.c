@@ -19,6 +19,7 @@ void Menu(Head *head) {// вывод меню действий
     kind[6] = Menu_search;
     kind[7] = save_file;
     kind[8] = Menu_end;
+    clear();
     do {// вывод возможных действий
         if (head->cnt!=0) {
             printf("\n");
@@ -32,7 +33,7 @@ void Menu(Head *head) {// вывод меню действий
             printf("6 - sort list\n");
             printf("7 - search by field\n");
             printf("8 - save result\n");
-            printf("9 - exit\n");
+            printf("9 - back\n");
             while (flag < 1 || flag > 9) {
                 flag_temp = safe_scan_int();
                 flag = strtol(flag_temp, NULL, 10);
@@ -92,6 +93,8 @@ void Menu_add(Head *head) {// меню для операции добавлен�
     char **str_array;
     int id = 0;
     char *id_temp = NULL;
+    clear();
+    Print_Node(head);
     printf("which node id you wanna put to:");
     while ((id > head->cnt+1) || (id < 1)) {
         id_temp = safe_scan_int();
@@ -105,10 +108,6 @@ void Menu_add(Head *head) {// меню для операции добавлен�
     printf("\n");
     str_array = scan_node();// вводим информации для узла
     new_node = create_node(str_array, 1);// создаем узел
-    printf("Your new node:\n");
-    print_header();
-    struct_out(new_node);
-    printf("\n");
     node = select_by_id(head, id);// ищем указатель по номеру
     insert_before(head, new_node, node);// вставляем после найденного узла новый
 
@@ -172,7 +171,7 @@ void Menu_edit(Head *head) {
         printf("5 - protein\n");
         printf("6 - fat\n");
         printf("7 - carbohydrates\n");
-        printf("8 - exit\n");
+        printf("8 - back\n");
         flag_temp = safe_scan_int();
         flag = strtol(flag_temp, NULL, 10);
         free(flag_temp);
@@ -449,4 +448,53 @@ void Menu_search(Head *head) {
         Free_Node(new_head);
     } else
         printf("\nNothing was found\n");
+}
+
+Head *Menu_add_first(){
+    Head* head=NULL;
+    head=make_head();
+    char **new_node=NULL;
+    printf("Add your first node\n");
+    new_node=scan_node();
+    head->first=create_node(new_node,1);
+    head->cnt=1;
+    head->last=head->first;
+
+    return(head);
+}
+void Menu_main(){
+    clear();
+    Head* head=NULL;
+    Head* (*kind[2])();
+    int flag=0;
+    char* flag_temp=NULL;
+    kind[0]= read_from_file;
+    kind[1]= Menu_add_first;
+    clear();
+    do {
+        printf("\nWhat you wanna do?\n");
+        printf("1 - read list from file\n");
+        printf("2 - create new list\n");
+        printf("3 - for help\n");
+        printf("4 - exit\n");
+        while (flag < 1 || flag > 4) {
+            printf("Enter your choice\n");
+            flag_temp = safe_scan_int();
+            flag = strtol(flag_temp, NULL, 10);
+            free(flag_temp);
+            if (flag < 1 || flag > 4) printf("wrong choice");
+        }
+        if (flag<3) {
+            head=kind[flag-1]();
+            if (head->cnt!=0)
+            {
+                Menu(head);
+                if( head->cnt!=0)
+                    Free_Node(head);
+            }
+        }
+        if (flag==3) Print_help();
+        if(flag!=4)flag=0;
+    } while (flag != 4);
+
 }

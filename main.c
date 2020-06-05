@@ -2,14 +2,9 @@
 #include "header/work_with_data_and_memory.h"
 #include "header/work_with_file.h"
 #include "header/menu.h"
+#include "header/output.h"
 
 int main() {
-    Head* head=NULL;
-    head=read_from_file();
-    if (head!=NULL)
-    {
-        Menu(head);
-        Free_Node(head);
-    }
+   Menu_main();
     return 0;
 }

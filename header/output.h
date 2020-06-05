@@ -11,4 +11,6 @@ void struct_out(Node *node);
 
 void Print_Node(Head *head);
 
+void Print_help();
+
 #endif

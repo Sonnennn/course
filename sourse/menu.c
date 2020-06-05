@@ -259,8 +259,10 @@ void Menu_swap(Head *head) {
     int second = 0;
     int first = 0;
     char *first_temp = NULL, *second_temp = NULL;
+    clear();
+    Print_Node(head);
     if (head->cnt > 1) {
-        printf("which node you wanna swap:");
+        printf("which node you wanna swap:\n");
         while ((first > head->cnt) || (first < 1)) {
             printf("First:\n");
             first_temp = safe_scan_int();
@@ -292,6 +294,8 @@ void Menu_sort(Head *head) {
     int kind = 0;
     char *kind_temp = NULL;
     char *flag_temp = NULL;
+    clear();
+    Print_Node(head);
     printf("\n");
     printf("What field should be sort:\n");
     printf("1 - weight\n");

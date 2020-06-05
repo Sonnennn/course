@@ -3,7 +3,7 @@
 #define WORK_WITH_DATA_AND_MEMORY_H
 
 #include "struct.h"
-
+void clear();
 Head *make_head();
 
 char **scan_node();

@@ -28,6 +28,7 @@ void sort_by_descending(Head *head,int field);
 
 void swap_node(Head* head, Node* first, Node* second);
 void sort_by_ascending(Head *head,int field);
-Head *search_by_string(Head *head,int flag,char* string);
+Head *search_by_string(Head *head,int flag,char* string,int field);
 
+Head *search_by_number(Head *head, int flag, float max,float min, int field);
 #endif

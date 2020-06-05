@@ -2,6 +2,16 @@
 
 #include "../header/struct.h"
 #include "../header/output.h"
+
+void clear(){
+#if defined(__linux__) || defined(__unix__) || defined(__APPLE__)
+    system("clear");
+#endif
+
+#if defined(_WIN32) || defined(_WIN64)
+    system("cls");
+#endif
+}
 Head *make_head() {// создание головы списка
     Head *head = NULL;
 
@@ -202,6 +212,7 @@ char* safe_scan_string(){
             fflush(stdin);
             n=0;
             fgets(str, 100, stdin);
+
             slen=strlen(str);
             for (unsigned int i = 0; i < slen; i++) {
                 temp=str[i];
@@ -216,8 +227,9 @@ char* safe_scan_string(){
                 printf("incorrect string, try again\n");
                 printf("Your string:");
             }
-        }} while (n>0);
+        }
+        n=0;
+    } while (n>0);
     str[strlen(str)-1]='\0';
-
     return(str);
 }

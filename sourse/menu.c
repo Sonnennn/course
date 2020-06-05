@@ -21,7 +21,7 @@ void Menu(Head *head) {// вывод меню действий
     kind[8] = Menu_end;
     clear();
     do {// вывод возможных действий
-        if (head->cnt!=0) {
+        if (head->cnt != 0) {
             printf("\n");
             Print_Node(head);
             printf("What do you wanna do?\n");
@@ -73,6 +73,7 @@ void Menu_copy(Head *head) {// меню операции копирования
     node = select_by_id(head, copy);// ищем этот узел
     node_dates = scan_date(node);
     new_node = create_node(node_dates, 1);
+
     while ((paste > head->cnt + 1) || (paste < 1)) {
         printf("which node id you want to second:");
         paste_temp = safe_scan_int();
@@ -96,11 +97,11 @@ void Menu_add(Head *head) {// меню для операции добавлен�
     clear();
     Print_Node(head);
     printf("which node id you wanna put to:");
-    while ((id > head->cnt+1) || (id < 1)) {
+    while ((id > head->cnt + 1) || (id < 1)) {
         id_temp = safe_scan_int();
         id = strtol(id_temp, NULL, 10);
         free(id_temp);// считываем номер узла после которого нужно добавить
-        if (id > head->cnt +1|| id < 1) {
+        if (id > head->cnt + 1 || id < 1) {
             printf("wrong node, try again\n");
             printf("which node id you wanna put to:");
         }
@@ -332,10 +333,26 @@ void Menu_sort(Head *head) {
 void Menu_search(Head *head) {
     Head *new_head = NULL;
     int flag = 0;
+    int count = 0;
     char *flag_temp = NULL;
     char *search;
-    float max,min;
+    float max, min;
+    char **str_search = NULL;
+    str_search=(char**)malloc(12 * sizeof(char *));
+    for (int i = 0; i < 12; i++) {
+        str_search[i]=NULL;
+    }
     do {
+        clear();
+        Print_Node(head);
+        count = 0;
+        for (int i = 0; i < 12; i++) {
+            if (str_search[i] != NULL)
+                count++;
+        }
+        if (count > 0)
+            Print_search(str_search);
+
         printf("\n");
         printf("What field you wanna search :\n");
         printf("1 - Section\n");
@@ -356,120 +373,209 @@ void Menu_search(Head *head) {
         }
         if (flag == 1) {
             printf("\nSearching Section:");
-            search = safe_scan_string();
+            if (str_search[0] == NULL) {
+                search = safe_scan_string();
+                str_search[0] = search;
+            } else {
+                free(str_search[0]);
+                search = safe_scan_string();
+                str_search[0] = search;
+            }
             if (new_head == NULL) {
                 new_head = search_by_string(head, 1, search, flag);
             } else new_head = search_by_string(new_head, 2, search, flag);
-            free(search);
+
         }
         if (flag == 2) {
             printf("\nSearching Product:");
-            search = safe_scan_string();
+            if (str_search[1] == NULL) {
+                search = safe_scan_string();
+                str_search[1] = search;
+            } else {
+                free(str_search[1]);
+                search = safe_scan_string();
+                str_search[1] = search;
+            }
             if (new_head == NULL) {
                 new_head = search_by_string(head, 1, search, flag);
             } else new_head = search_by_string(new_head, 2, search, flag);
-            free(search);
         }
         if (flag == 3) {
             printf("\nSearching Weight:\n");
             printf("Maximum range value:\n");
-            search=safe_scan_float();
-            max=strtof(search,NULL);
-            free(search);
+            if (str_search[2] == NULL) {
+                search = safe_scan_float();
+                str_search[2] = search;
+                max = strtof(search, NULL);
+            } else {
+                free(str_search[2]);
+                search = safe_scan_float();
+                str_search[2] = search;
+                max = strtof(search, NULL);
+            }
             printf("Minimum range value:\n");
-            search=safe_scan_float();
-            min=strtof(search,NULL);
-            free(search);
+            if (str_search[3] == NULL) {
+                search = safe_scan_float();
+                str_search[3] = search;
+                min = strtof(search, NULL);
+            } else {
+                free(str_search[3]);
+                search = safe_scan_float();
+                str_search[3] = search;
+                min = strtof(search, NULL);
+            }
             if (new_head == NULL) {
-                new_head = search_by_number(head, 1, max,min, flag);
-            } else new_head = search_by_number(head, 2, max,min, flag);
+                new_head = search_by_number(head, 1, max, min, flag);
+            } else new_head = search_by_number(head, 2, max, min, flag);
         }
         if (flag == 4) {
             printf("\nSearching Calories:\n");
             printf("Maximum range value:\n");
-            search=safe_scan_float();
-            max=strtof(search,NULL);
-            free(search);
+            if (str_search[4] == NULL) {
+                search = safe_scan_float();
+                str_search[4] = search;
+                max = strtof(search, NULL);
+            } else {
+                free(str_search[4]);
+                search = safe_scan_float();
+                str_search[4] = search;
+                max = strtof(search, NULL);
+            }
             printf("Minimum range value:\n");
-            search=safe_scan_float();
-            min=strtof(search,NULL);
-            free(search);
+            if (str_search[5] == NULL) {
+                search = safe_scan_float();
+                str_search[5] = search;
+                min = strtof(search, NULL);
+            } else {
+                free(str_search[5]);
+                search = safe_scan_float();
+                str_search[5] = search;
+                min = strtof(search, NULL);
+            }
             if (new_head == NULL) {
-                new_head = search_by_number(head, 1, max,min, flag);
-            } else new_head = search_by_number(head, 2, max,min, flag);
+                new_head = search_by_number(head, 1, max, min, flag);
+            } else new_head = search_by_number(head, 2, max, min, flag);
         }
         if (flag == 5) {
             printf("\nSearching Protein:\n");
             printf("Maximum range value:\n");
-            search=safe_scan_float();
-            max=strtof(search,NULL);
-            free(search);
+            if (str_search[6] == NULL) {
+                search = safe_scan_float();
+                str_search[6] = search;
+                max = strtof(search, NULL);
+            } else {
+                free(str_search[6]);
+                search = safe_scan_float();
+                str_search[6] = search;
+                max = strtof(search, NULL);
+            }
             printf("Minimum range value:\n");
-            search=safe_scan_float();
-            min=strtof(search,NULL);
-            free(search);
+            if (str_search[7] == NULL) {
+                search = safe_scan_float();
+                str_search[7] = search;
+                min = strtof(search, NULL);
+            } else {
+                free(str_search[7]);
+                search = safe_scan_float();
+                str_search[7] = search;
+                min = strtof(search, NULL);
+            }
             if (new_head == NULL) {
-                new_head = search_by_number(head, 1, max,min, flag);
-            } else new_head = search_by_number(head, 2, max,min, flag);
+                new_head = search_by_number(head, 1, max, min, flag);
+            } else new_head = search_by_number(head, 2, max, min, flag);
         }
         if (flag == 6) {
             printf("\nSearching Fat:\n");
             printf("Maximum range value:\n");
-            search=safe_scan_float();
-            max=strtof(search,NULL);
-            free(search);
+            if (str_search[8] == NULL) {
+                search = safe_scan_float();
+                str_search[8] = search;
+                max = strtof(search, NULL);
+            } else {
+                free(str_search[8]);
+                search = safe_scan_float();
+                str_search[8] = search;
+                max = strtof(search, NULL);
+            }
             printf("Minimum range value:\n");
-            search=safe_scan_float();
-            min=strtof(search,NULL);
-            free(search);
+            if (str_search[9] == NULL) {
+                search = safe_scan_float();
+                str_search[9] = search;
+                min = strtof(search, NULL);
+            } else {
+                free(str_search[9]);
+                search = safe_scan_float();
+                str_search[9] = search;
+                min = strtof(search, NULL);
+            }
             if (new_head == NULL) {
-                new_head = search_by_number(head, 1, max,min, flag);
-            } else new_head = search_by_number(head, 2, max,min, flag);
+                new_head = search_by_number(head, 1, max, min, flag);
+            } else new_head = search_by_number(head, 2, max, min, flag);
         }
         if (flag == 7) {
             printf("\nSearching Carbohydrates:\n");
             printf("Maximum range value:\n");
-            search=safe_scan_float();
-            max=strtof(search,NULL);
-            free(search);
+            if (str_search[10] == NULL) {
+                search = safe_scan_float();
+                str_search[10] = search;
+                max = strtof(search, NULL);
+            } else {
+                free(str_search[10]);
+                search = safe_scan_float();
+                str_search[10] = search;
+                max = strtof(search, NULL);
+            }
             printf("Minimum range value:\n");
-            search=safe_scan_float();
-            min=strtof(search,NULL);
-            free(search);
+            if (str_search[11] == NULL) {
+                search = safe_scan_float();
+                str_search[11] = search;
+                min = strtof(search, NULL);
+            } else {
+                free(str_search[11]);
+                search = safe_scan_float();
+                str_search[11] = search;
+                min = strtof(search, NULL);
+            }
             if (new_head == NULL) {
-                new_head = search_by_number(head, 1, max,min, flag);
-            } else new_head = search_by_number(head, 2, max,min, flag);
+                new_head = search_by_number(head, 1, max, min, flag);
+            } else new_head = search_by_number(head, 2, max, min, flag);
         }
         if (flag != 8) flag = 0;
+
     } while (flag != 8);
+    for (int i = 0; i < 12; i++) {
+        if (str_search[i] != NULL)
+            free(str_search[i]);
+    }
+    free(str_search);
     if (new_head != NULL) {
         Menu(new_head);
-        if(new_head->cnt==0)
         Free_Node(new_head);
     } else
         printf("\nNothing was found\n");
 }
 
-Head *Menu_add_first(){
-    Head* head=NULL;
-    head=make_head();
-    char **new_node=NULL;
+Head *Menu_add_first() {
+    Head *head = NULL;
+    head = make_head();
+    char **new_node = NULL;
     printf("Add your first node\n");
-    new_node=scan_node();
-    head->first=create_node(new_node,1);
-    head->cnt=1;
-    head->last=head->first;
+    new_node = scan_node();
+    head->first = create_node(new_node, 1);
+    head->cnt = 1;
+    head->last = head->first;
 
-    return(head);
+    return (head);
 }
-void Menu_main(){
+
+void Menu_main() {
     clear();
-    Head* head=NULL;
-    Head* (*kind[2])();
-    int flag=0;
-    char* flag_temp=NULL;
-    kind[0]= read_from_file;
-    kind[1]= Menu_add_first;
+    Head *head = NULL;
+    Head *(*kind[2])();
+    int flag = 0;
+    char *flag_temp = NULL;
+    kind[0] = read_from_file;
+    kind[1] = Menu_add_first;
     clear();
     do {
         printf("\nWhat you wanna do?\n");
@@ -484,17 +590,16 @@ void Menu_main(){
             free(flag_temp);
             if (flag < 1 || flag > 4) printf("wrong choice");
         }
-        if (flag<3) {
-            head=kind[flag-1]();
-            if (head->cnt!=0)
-            {
+        if (flag < 3) {
+            head = kind[flag - 1]();
+            if (head->cnt != 0) {
                 Menu(head);
-                if( head->cnt!=0)
+                if (head->cnt != 0)
                     Free_Node(head);
             }
         }
-        if (flag==3) Print_help();
-        if(flag!=4)flag=0;
+        if (flag == 3) Print_help();
+        if (flag != 4)flag = 0;
     } while (flag != 4);
-
+    clear();
 }

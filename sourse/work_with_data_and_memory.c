@@ -93,8 +93,12 @@ Node *create_node(char **str, int id) // инициализация узла
     new_node->micro[2] = strtod(str[6], NULL);
     new_node->next = NULL;
     new_node->prev = NULL;
-
-
+    free(str[2]);
+    free(str[3]);
+    free(str[4]);
+    free(str[5]);
+    free(str[6]);
+    free(str);
     return new_node; // возвращаем адрес узла
 }
 
@@ -139,9 +143,9 @@ char **scan_date(Node *node) {//создает массив строк с дан
 
     int length = 100;
     char **str_array = NULL;
-    str_array = (char **) malloc((7 + 1) * sizeof(char *));// выделяем память под массив строк
+    str_array = (char **) malloc(7  * sizeof(char *));// выделяем память под массив строк
     if (str_array != NULL) {
-        for (int i = 0; i <= 7; i++) {
+        for (int i = 0; i <7; i++) {
             str_array[i] = (char *) malloc(length * sizeof(char));// выделяет память под сами строки
         }
         strcpy(str_array[0], node->name);// заполняет сами строки данными из полей узла
@@ -216,7 +220,8 @@ char *safe_scan_float() {
     if (m == 1) {
         search = strchr(str, '.');
         str[search - str + 3] = '\0';
-    }
+    } else
+        str[strlen(str)-1] = '\0';
     return (str);
 }
 

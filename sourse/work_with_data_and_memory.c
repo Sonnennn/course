@@ -1,9 +1,9 @@
 
 
 #include "../header/struct.h"
-#include "../header/output.h"
+#include "../header/work_with_data_and_memory.h"
 
-void clear(){
+void clear() {
 #if defined(__linux__) || defined(__unix__) || defined(__APPLE__)
     system("clear");
 #endif
@@ -12,6 +12,7 @@ void clear(){
     system("cls");
 #endif
 }
+
 Head *make_head() {// создание головы списка
     Head *head = NULL;
 
@@ -25,30 +26,43 @@ Head *make_head() {// создание головы списка
 }
 
 char **scan_node() { // ввод элементов нового узла списка
-    unsigned int slen;// длина строки
-    char data[30];// массив для ввода информации с строки
     char **str_array = NULL;
     str_array = (char **) malloc((8) * sizeof(char *));// выделяем память для массива строк
-    printf("enter your dates:\n");
+    printf("\nEnter your dates:\n");
     for (int i = 0; i < 7; i = i + 1) {
         fflush(stdin);
-        if (i==0)printf("Section:");
-        if (i==1)printf("Product:");
-        if (i==2)printf("Weight:");
-        if (i==3)printf("Calories:");
-        if (i==4)printf("Protein:");
-        if (i==5)printf("Fat:");
-        if (i==6)printf("Carbohydrates:");
-        fgets(data, 30, stdin);// считываем строки
-        str_array[i] = (char *) malloc(255 * sizeof(char));
-        slen = strlen(data);
-        data[slen - 1] = '\0';
-        for (unsigned int j = 0; j < slen; j++) {// заполняем строками массив строк
-            str_array[i][j] = data[j];
+        if (i == 0) {
+            printf("Section:");
+            str_array[i] = safe_scan_string();
         }
-        str_array[i][slen - 1] = '\0';
+        if (i == 1) {
+            printf("Product:");
+            str_array[i] = safe_scan_string();
+        }
+        if (i == 2) {
+            printf("Weight:");
+            str_array[i] = safe_scan_int();
+        }
+        if (i == 3) {
+            printf("Calories:");
+            str_array[i] = safe_scan_float();
+        }
+        if (i == 4) {
+            printf("Protein:");
+            str_array[i] = safe_scan_float();
+        }
+        if (i == 5) {
+            printf("Fat:");
+            str_array[i] = safe_scan_float();
+        }
+        if (i == 6 ){printf("Carbohydrates:");
+        str_array[i] = safe_scan_float();
     }
-    return str_array;// возвращаем указатель на массив строк
+
+}
+
+return
+str_array;// возвращаем указатель на массив строк
 }
 
 void Free_Node(Head *head) {// освобождение памяти под список
@@ -72,11 +86,11 @@ Node *create_node(char **str, int id) // инициализация узла
     new_node->id = id;
     new_node->name = str[0];
     new_node->type = str[1];
-    new_node->weight = strtol(str[2],NULL,10);
-    new_node->calories = strtod(str[3],NULL);
-    new_node->micro[0] = strtod(str[4],NULL);
-    new_node->micro[1] = strtod(str[5],NULL);
-    new_node->micro[2] = strtod(str[6],NULL);
+    new_node->weight = strtol(str[2], NULL, 10);
+    new_node->calories = strtod(str[3], NULL);
+    new_node->micro[0] = strtod(str[4], NULL);
+    new_node->micro[1] = strtod(str[5], NULL);
+    new_node->micro[2] = strtod(str[6], NULL);
     new_node->next = NULL;
     new_node->prev = NULL;
 
@@ -141,102 +155,100 @@ char **scan_date(Node *node) {//создает массив строк с дан
     return (str_array);
 }
 
-char* safe_scan_int(){
-    char* str=NULL;
-    int n=0;
+char *safe_scan_int() {
+    char *str = NULL;
+    int n = 0;
     int temp;
     unsigned int slen;
-    do{
-    str=malloc(100* sizeof(char));
-    if(str!=NULL) {
-        fflush(stdin);
-        n=0;
-        fgets(str, 100, stdin);
-        printf("\n");
-        slen=strlen(str);
-        for (int i = 0; i < slen-1; i++) {
-            temp=str[i];
-            if (temp<'0'||temp>'9')  n++;
+    do {
+        str = malloc(100 * sizeof(char));
+        if (str != NULL) {
+            fflush(stdin);
+            n = 0;
+            fgets(str, 100, stdin);
+            printf("\n");
+            slen = strlen(str);
+            for (int i = 0; i < slen - 1; i++) {
+                temp = str[i];
+                if (temp < '0' || temp > '9') n++;
+            }
+            if (n > 0) {
+                printf("incorrect integer number, try again\n");
+                free(str);
+                printf("Your integer number");
+            }
         }
-        if(n>0)
-        {
-        printf("incorrect integer number, try again\n");
-        free(str);
-        printf("Your integer number");
-        }
-    }} while (n>0);
+    } while (n > 0);
 
 
-    return(str);
+    return (str);
 }
 
-char* safe_scan_float(){
-    char* str=NULL;
-    int n=0;
-    int m=0;
+char *safe_scan_float() {
+    char *str = NULL;
+    int n = 0;
+    int m = 0;
     int temp;
     unsigned int slen;
-    char* search=NULL;
-    do{
-        str=malloc(100* sizeof(char));
-        if(str!=NULL) {
+    char *search = NULL;
+    do {
+        str = malloc(100 * sizeof(char));
+        if (str != NULL) {
             fflush(stdin);
-            n=0;
-            m=0;
+            n = 0;
+            m = 0;
             fgets(str, 100, stdin);
-            slen=strlen(str);
-            for (unsigned int i = 0; i < slen-1; i++) {
-                temp=str[i];
-                if (temp<48||temp>57)n++;
-                if (str[i]=='.')m++;
+            slen = strlen(str);
+            for (unsigned int i = 0; i < slen - 1; i++) {
+                temp = str[i];
+                if (temp < 48 || temp > 57)n++;
+                if (str[i] == '.')m++;
             }
-            if (str[0]=='.')m++;
-            n=n-m;
-            if(n>0|| m>1)
-            {
+            if (str[0] == '.')m++;
+            n = n - m;
+            if (n > 0 || m > 1) {
                 printf("incorrect float number, try again\n");
                 free(str);
                 printf("Your float number:");
             }
-        }} while (n>0|| m>1);
-    if(m==1)
-    {
-        search=strchr(str,'.');
-        str[search-str+3]='\0';
+        }
+    } while (n > 0 || m > 1);
+    if (m == 1) {
+        search = strchr(str, '.');
+        str[search - str + 3] = '\0';
     }
-    return(str);
+    return (str);
 }
 
-char* safe_scan_string(){
-    char* str=NULL;
-    int n=0;
+char *safe_scan_string() {
+    char *str = NULL;
+    int n = 0;
     int temp;
     unsigned int slen;
 
-    do{
-        str=malloc(100* sizeof(char));
-        if(str!=NULL) {
+    do {
+        str = malloc(100 * sizeof(char));
+        if (str != NULL) {
             fflush(stdin);
-            n=0;
+            n = 0;
             fgets(str, 100, stdin);
 
-            slen=strlen(str);
+            slen = strlen(str);
             for (unsigned int i = 0; i < slen; i++) {
-                temp=str[i];
-                if (temp>=48&&temp<=57)n++;
+                temp = str[i];
+                if (temp >= 48 && temp <= 57)n++;
             }
 
-            if(str[0]==' ')n++;
-            if(str[strlen(str)-2]==' ')n++;
-            if(n>0)
-            {
+            if (str[0] == ' ')n++;
+            if (str[strlen(str) - 2] == ' ')n++;
+            if (n > 0) {
                 free(str);
                 printf("incorrect string, try again\n");
                 printf("Your string:");
             }
         }
-        n=0;
-    } while (n>0);
-    str[strlen(str)-1]='\0';
-    return(str);
+        n = 0;
+    } while (n > 0);
+    str[strlen(str) - 1] = '\0';
+    return (str);
 }

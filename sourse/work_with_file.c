@@ -24,14 +24,17 @@ Head *read_from_file() {// создание списка данных из фа�
     if (file != NULL) {
         str = 0,sep_count=0;
         printf("\n");
-        while ((chr=fgetc(file))!='\n')
+        while ((chr=fgetc(file))!='\n'){
             if (chr==sep) sep_count++;
+        }
+
         if(sep_count==6){
+            rewind(file);
             while ((fgets(s1, maxlen, file)) != NULL) str++;
             rewind(file);// считаем количество строк в файле
              // читаем данные из файла и заполняем структуру
             head = make_head();
-             for (i = 1; i < str + 1; i++) {
+             for (i = 1; i < str+1 ; i++) {
             fgets(s1, maxlen, file); // берем одну строку
             slen = strlen(s1);
             s2 = simple_split(s1, slen, sep); // разбиваем ее на части

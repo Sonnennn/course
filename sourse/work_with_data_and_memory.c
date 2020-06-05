@@ -55,14 +55,15 @@ char **scan_node() { // ввод элементов нового узла спи
             printf("Fat:");
             str_array[i] = safe_scan_float();
         }
-        if (i == 6 ){printf("Carbohydrates:");
-        str_array[i] = safe_scan_float();
+        if (i == 6) {
+            printf("Carbohydrates:");
+            str_array[i] = safe_scan_float();
+        }
+
     }
 
-}
-
-return
-str_array;// возвращаем указатель на массив строк
+    return
+            str_array;// возвращаем указатель на массив строк
 }
 
 void Free_Node(Head *head) {// освобождение памяти под список
@@ -143,9 +144,9 @@ char **scan_date(Node *node) {//создает массив строк с дан
 
     int length = 100;
     char **str_array = NULL;
-    str_array = (char **) malloc(7  * sizeof(char *));// выделяем память под массив строк
+    str_array = (char **) malloc(7 * sizeof(char *));// выделяем память под массив строк
     if (str_array != NULL) {
-        for (int i = 0; i <7; i++) {
+        for (int i = 0; i < 7; i++) {
             str_array[i] = (char *) malloc(length * sizeof(char));// выделяет память под сами строки
         }
         strcpy(str_array[0], node->name);// заполняет сами строки данными из полей узла
@@ -221,7 +222,7 @@ char *safe_scan_float() {
         search = strchr(str, '.');
         str[search - str + 3] = '\0';
     } else
-        str[strlen(str)-1] = '\0';
+        str[strlen(str) - 1] = '\0';
     return (str);
 }
 
@@ -254,6 +255,6 @@ char *safe_scan_string() {
         }
         n = 0;
     } while (n > 0);
-    str[strlen(str) -1] = '\0';
+    str[strlen(str) - 1] = '\0';
     return (str);
 }

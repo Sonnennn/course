@@ -5,6 +5,6 @@
 #include "header/output.h"
 
 int main() {
-   Menu_main();
+    Menu_main();
     return 0;
 }

@@ -338,9 +338,9 @@ void Menu_search(Head *head) {
     char *search;
     float max, min;
     char **str_search = NULL;
-    str_search=(char**)malloc(12 * sizeof(char *));
+    str_search = (char **) malloc(12 * sizeof(char *));
     for (int i = 0; i < 12; i++) {
-        str_search[i]=NULL;
+        str_search[i] = NULL;
     }
     do {
         clear();
@@ -592,13 +592,16 @@ void Menu_main() {
         }
         if (flag < 3) {
             head = kind[flag - 1]();
-            if (head->cnt != 0) {
+            if (head != NULL) {
                 Menu(head);
                 if (head->cnt != 0)
                     Free_Node(head);
             }
         }
-        if (flag == 3) Print_help();
+        if (flag == 3) {
+            clear();
+            Print_help();
+        }
         if (flag != 4)flag = 0;
     } while (flag != 4);
     clear();

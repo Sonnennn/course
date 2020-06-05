@@ -3,7 +3,9 @@
 #define WORK_WITH_DATA_AND_MEMORY_H
 
 #include "struct.h"
+
 void clear();
+
 Head *make_head();
 
 char **scan_node();
@@ -16,7 +18,10 @@ char **simple_split(char *str, int length, char sep);
 
 char **scan_date(Node *node);
 
-char* safe_scan_int();
-char* safe_scan_string();
-char* safe_scan_float();
+char *safe_scan_int();
+
+char *safe_scan_string();
+
+char *safe_scan_float();
+
 #endif

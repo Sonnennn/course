@@ -14,11 +14,17 @@ void Menu_edit(Head *head);
 void Menu_add(Head *head);
 
 void Menu_delete(Head *head);
+
 void Menu_end(Head *head);
-void Menu_sort(Head* head);
-void Menu_swap(Head*head);
-void Menu_search(Head* head);
+
+void Menu_sort(Head *head);
+
+void Menu_swap(Head *head);
+
+void Menu_search(Head *head);
+
 Head *Menu_add_first();
+
 void Menu_main();
 
 #endif

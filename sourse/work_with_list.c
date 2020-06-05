@@ -367,7 +367,9 @@ Head *search_by_string(Head *head, int flag, char *string, int field) {
                 if (strstr(temp->name, string) == NULL) {
                     temp_prev = temp->next;
                     delete_selected(head, temp);
-                }
+
+                }else temp_prev = temp->next;
+
                 temp = temp_prev;
                 if (temp == head->last) temp = NULL;
             }
@@ -406,17 +408,17 @@ Head *search_by_string(Head *head, int flag, char *string, int field) {
         if (flag == 2) {
             temp = head->first;
             while (temp != NULL) {
-                if (strstr(temp->type, string) == NULL) {
+                if (strstr(temp->name, string) == NULL) {
                     temp_prev = temp->next;
                     delete_selected(head, temp);
-                }
-                temp = temp_prev;
+
+                }else temp_prev = temp->next;
+                temp=temp_prev;
                 if (temp == head->last) temp = NULL;
             }
             new_head = head;
         }
     }
-
     if (new_head->cnt == 0) {
         free(new_head);
         new_head = NULL;
@@ -463,8 +465,8 @@ Head *search_by_number(Head *head, int flag, float max,float min, int field){
         if (flag == 2) {
             temp = head->first;
             while (temp != NULL) {
+                temp_prev = temp->next;
                 if ( temp->weight>max ||temp->weight<min){
-                    temp_prev = temp->next;
                     delete_selected(head, temp);
                 }
                 temp = temp_prev;
@@ -505,10 +507,11 @@ Head *search_by_number(Head *head, int flag, float max,float min, int field){
         if (flag == 2) {
             temp = head->first;
             while (temp != NULL) {
+                temp_prev = temp->next;
                 if ( temp->calories>max ||temp->calories<min){
-                    temp_prev = temp->next;
                     delete_selected(head, temp);
                 }
+
                 temp = temp_prev;
                 if (temp == head->last) temp = NULL;
             }
@@ -547,8 +550,8 @@ Head *search_by_number(Head *head, int flag, float max,float min, int field){
         if (flag == 2) {
             temp = head->first;
             while (temp != NULL) {
+                temp_prev = temp->next;
                 if ( temp->micro[0]>max ||temp->micro[0]<min){
-                    temp_prev = temp->next;
                     delete_selected(head, temp);
                 }
                 temp = temp_prev;
@@ -589,8 +592,9 @@ Head *search_by_number(Head *head, int flag, float max,float min, int field){
         if (flag == 2) {
             temp = head->first;
             while (temp != NULL) {
+                temp_prev = temp->next;
                 if ( temp->micro[1]>max ||temp->micro[1]<min){
-                    temp_prev = temp->next;
+
                     delete_selected(head, temp);
                 }
                 temp = temp_prev;
@@ -631,8 +635,8 @@ Head *search_by_number(Head *head, int flag, float max,float min, int field){
         if (flag == 2) {
             temp = head->first;
             while (temp != NULL) {
+                temp_prev = temp->next;
                 if ( temp->micro[2]>max ||temp->micro[2]<min){
-                    temp_prev = temp->next;
                     delete_selected(head, temp);
                 }
                 temp = temp_prev;

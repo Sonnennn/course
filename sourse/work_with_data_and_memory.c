@@ -254,6 +254,6 @@ char *safe_scan_string() {
         }
         n = 0;
     } while (n > 0);
-    str[strlen(str) - 1] = '\0';
+    str[strlen(str) -1] = '\0';
     return (str);
 }

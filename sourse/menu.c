@@ -426,7 +426,7 @@ void Menu_search(Head *head) {
             }
             if (new_head == NULL) {
                 new_head = search_by_number(head, 1, max, min, flag);
-            } else new_head = search_by_number(head, 2, max, min, flag);
+            } else new_head = search_by_number(new_head, 2, max, min, flag);
         }
         if (flag == 4) {
             printf("\nSearching Calories:\n");
@@ -454,7 +454,7 @@ void Menu_search(Head *head) {
             }
             if (new_head == NULL) {
                 new_head = search_by_number(head, 1, max, min, flag);
-            } else new_head = search_by_number(head, 2, max, min, flag);
+            } else new_head = search_by_number(new_head, 2, max, min, flag);
         }
         if (flag == 5) {
             printf("\nSearching Protein:\n");
@@ -482,7 +482,7 @@ void Menu_search(Head *head) {
             }
             if (new_head == NULL) {
                 new_head = search_by_number(head, 1, max, min, flag);
-            } else new_head = search_by_number(head, 2, max, min, flag);
+            } else new_head = search_by_number(new_head, 2, max, min, flag);
         }
         if (flag == 6) {
             printf("\nSearching Fat:\n");
@@ -510,7 +510,7 @@ void Menu_search(Head *head) {
             }
             if (new_head == NULL) {
                 new_head = search_by_number(head, 1, max, min, flag);
-            } else new_head = search_by_number(head, 2, max, min, flag);
+            } else new_head = search_by_number(new_head, 2, max, min, flag);
         }
         if (flag == 7) {
             printf("\nSearching Carbohydrates:\n");
@@ -538,11 +538,11 @@ void Menu_search(Head *head) {
             }
             if (new_head == NULL) {
                 new_head = search_by_number(head, 1, max, min, flag);
-            } else new_head = search_by_number(head, 2, max, min, flag);
+            } else new_head = search_by_number(new_head, 2, max, min, flag);
         }
         if (flag != 8) flag = 0;
-
     } while (flag != 8);
+
     for (int i = 0; i < 12; i++) {
         if (str_search[i] != NULL)
             free(str_search[i]);

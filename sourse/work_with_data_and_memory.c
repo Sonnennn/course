@@ -32,6 +32,13 @@ char **scan_node() { // ввод элементов нового узла спи
     printf("enter your dates:\n");
     for (int i = 0; i < 7; i = i + 1) {
         fflush(stdin);
+        if (i==0)printf("Section:");
+        if (i==1)printf("Product:");
+        if (i==2)printf("Weight:");
+        if (i==3)printf("Calories:");
+        if (i==4)printf("Protein:");
+        if (i==5)printf("Fat:");
+        if (i==6)printf("Carbohydrates:");
         fgets(data, 30, stdin);// считываем строки
         str_array[i] = (char *) malloc(255 * sizeof(char));
         slen = strlen(data);

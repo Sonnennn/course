@@ -17,6 +17,7 @@ void struct_out(Node *node) { // вывод полей структуры
 
 
 void Print_Node(Head *head) {// вывод списка
+    printf("\n");
     print_header();
     Node *node = NULL;
     node = head->first;

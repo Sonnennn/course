@@ -10,3 +10,28 @@ fruits;mango;100;65.00;0.51;0.27;17.00
 nuts;almond;100;645.00;18.60;57.70;16.20
 beverage;coffee;100;1.00;0.12;0.02;0.04
 fastfood;hamburger;100;253.00;13.00;8.50;30.00
+seafood;squid;100;91.00;15.45;1.37;3.05
+seafood;octopus;100;82.00;14.91;1.04;2.2
+meat and fish;mackerel;100;167.00;19.32;9.36;0.00
+meat and fish;flouder;100;91.00;18.84;1.19;0.00
+nuts;pistache;100;557.00;20.61;44.44;27.97
+vegetables;carrot;100;41.00;0.93;0.24;9.58
+vegetables;broccoli;100;34.00;2.82;0.37;6.64
+vegetables;tomato;100;18.00;0.88;0.2;3.92
+vegetables;pumpkin;100;26.00;1;0.1;6.5
+sweets;pancakes;200;454;12.8;19.4;56.6
+sweets;cake;113;345;8.49;9.51;57.14
+sweets;chocolate;100;535;7.65;29.66;59.4
+sweets;donuts;100;421;5;22.9;49.7
+meat and fish;turkey;100;170;29.32;4.97;0
+meat and fish;duck;100;132;18.28;5.95;0
+meat and fish;tuna;100;108;23.38;0.95;0
+fastfood;pizza;198;511;18.86;22.52;57.17
+fastfood;hot dog;125;265;13.1;12.1;26
+fruits;pear;100;42;0.5;10.65;0.23
+fruits;orange;100;47;0.94;0.12;11.75
+fruits;kiwi;76;46;0.87;0.4;11.14
+beverage;vodka;100;231;0;0;0
+beverage;wine;105;70;0.06;0;2.26
+beverage;tea;240;2;0;0;0.71
+beverage;beer;100;44;0.47;0;3.6

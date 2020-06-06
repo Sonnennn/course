@@ -4,7 +4,7 @@
 
 #include "struct.h"
 #include "work_with_list.h"
-
+void Menu_main();
 void Menu(Head *head);
 
 void Menu_copy(Head *head);
@@ -25,6 +25,6 @@ void Menu_search(Head *head);
 
 Head *Menu_add_first();
 
-void Menu_main();
+
 
 #endif

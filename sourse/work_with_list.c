@@ -48,7 +48,9 @@ void delete_selected(Head *head, Node *current_node) {// удаление опр
     free(current_node->type);
     free(current_node);
     head->cnt--;
-    if (head->cnt==0)free(head);
+    if (head->cnt==0)
+    {free(head);
+    head=NULL;}
 }
 
 

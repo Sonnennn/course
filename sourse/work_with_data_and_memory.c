@@ -69,15 +69,17 @@ char **scan_node() { // ввод элементов нового узла спи
 void Free_Node(Head *head) {// освобождение памяти под список
     Node *temp_node = NULL;
     Node *temp = NULL;
-    temp_node = head->first;
-    while (temp_node != NULL) {// проходим по списку и освобождаем память пока не дойдем до конца
-        free(temp_node->name);
-        free(temp_node->type);
-        temp = temp_node->next;
-        free(temp_node);
-        temp_node = temp;
+    if(head!=NULL) {if (head->cnt!=0){
+        temp_node = head->first;
+        while (temp_node != NULL) {// проходим по списку и освобождаем память пока не дойдем до конца
+            free(temp_node->name);
+            free(temp_node->type);
+            temp = temp_node->next;
+            free(temp_node);
+            temp_node = temp;
+        }
+        free(head);}
     }
-    free(head);
 }
 
 Node *create_node(char **str, int id) // инициализация узла

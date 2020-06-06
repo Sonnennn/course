@@ -21,6 +21,7 @@ void Menu(Head *head) {// вывод меню действий
     kind[8] = Menu_end;
     clear();
     do {// вывод возможных действий
+        if(head!=NULL){
         if (head->cnt != 0) {
             printf("\n");
             Print_Node(head);
@@ -48,7 +49,8 @@ void Menu(Head *head) {// вывод меню действий
         } else {
             printf("\nList is empty\n");
             flag = 9;
-        }
+        }}else{ printf("\nList is empty\n");
+            flag = 9;}
     } while (flag != 9);
 
 }

@@ -1,7 +1,6 @@
 
 #include "../header/struct.h"
 #include "../header/work_with_data_and_memory.h"
-#include "../header/output.h"
 
 Head *read_from_file() {// создание списка данных из файла
     Head *head = NULL;

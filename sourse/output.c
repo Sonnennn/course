@@ -28,7 +28,7 @@ void Print_Node(Head *head) {// вывод списка
 }
 
 void Print_help() {
-    printf("In the main menu you can choose: \n"
+    printf("\nIn the main menu you can choose: \n"
            "Open already generated list from file\n"
            "Create new list\n");
     printf("\n The program allows you to work with a list of data\n using the following steps:\n"

@@ -25,11 +25,11 @@ void Menu(Head *head) {// вывод меню действий
             printf("\n");
             Print_Node(head);
             printf("What do you wanna do?\n");
-            printf("1 - add node \n");
-            printf("2 - edit node \n");
-            printf("3 - delete node\n");
-            printf("4 - copy node\n");
-            printf("5 - swap node\n");
+            printf("1 - add card \n");
+            printf("2 - edit card \n");
+            printf("3 - delete card\n");
+            printf("4 - copy card\n");
+            printf("5 - swap card\n");
             printf("6 - sort list\n");
             printf("7 - search by field\n");
             printf("8 - save result\n");
@@ -61,12 +61,12 @@ void Menu_copy(Head *head) {// меню операции копирования
     char *copy_temp = NULL, *paste_temp = NULL;
 
     while ((copy > head->cnt) || (copy < 1)) {
-        printf("which node id you wanna to copy:");
+        printf("which card id you wanna to copy:");
         copy_temp = safe_scan_int();
         copy = strtol(copy_temp, NULL, 10);
         free(copy_temp);// считываем номер узла который нужно скопировать
         if (copy > head->cnt || copy < 1) {
-            printf("wrong node id, try again\n");
+            printf("wrong card id, try again\n");
         }
     }
     printf("\n");
@@ -75,12 +75,12 @@ void Menu_copy(Head *head) {// меню операции копирования
     new_node = create_node(node_dates, 1);
 
     while ((paste > head->cnt + 1) || (paste < 1)) {
-        printf("which node id you want to second:");
+        printf("which card id you want to paste:");
         paste_temp = safe_scan_int();
         paste = strtol(paste_temp, NULL, 10);
         free(paste_temp);// считываем номер узла перед которым нужно вставить
         if (paste > head->cnt + 1 || paste < 1) {
-            printf("wrong node id , try again\n");
+            printf("wrong card id , try again\n");
         }
     }
     printf("%d", head->cnt);
@@ -96,14 +96,14 @@ void Menu_add(Head *head) {// меню для операции добавлен�
     char *id_temp = NULL;
     clear();
     Print_Node(head);
-    printf("which node id you wanna put to:");
+    printf("which card id you wanna put to:");
     while ((id > head->cnt + 1) || (id < 1)) {
         id_temp = safe_scan_int();
         id = strtol(id_temp, NULL, 10);
         free(id_temp);// считываем номер узла после которого нужно добавить
         if (id > head->cnt + 1 || id < 1) {
-            printf("wrong node, try again\n");
-            printf("which node id you wanna put to:");
+            printf("wrong card, try again\n");
+            printf("which card id you wanna put to:");
         }
     }
     printf("\n");
@@ -119,14 +119,14 @@ void Menu_delete(Head *head) {// меню для операции удалени
     Node *node;
     int id = 0;
     char *id_temp = NULL;
-    printf("which node you wanna delete:");
+    printf("which card you wanna delete:");
     while ((id > head->cnt) || (id < 1)) {
         id_temp = safe_scan_int();
         id = strtol(id_temp, NULL, 10);
         free(id_temp);// считываем номер узла который нужно удалить
         if (id > head->cnt || id < 1) {
-            printf("wrong node , try again\n");
-            printf("which node you wanna delete:");
+            printf("wrong card , try again\n");
+            printf("which card you wanna delete:");
         }
     }
     printf("\n");
@@ -147,14 +147,14 @@ void Menu_edit(Head *head) {
     char *id_temp = NULL;
     char *str = NULL;
 
-    printf("which node you wanna edit:");
+    printf("which card you wanna edit:");
     while ((id > head->cnt) || (id < 1)) {
         id_temp = safe_scan_int();
         id = strtol(id_temp, NULL, 10);
         free(id_temp);
         if (id > head->cnt || id < 1) {
-            printf("wrong node id , try again\n");
-            printf("which node you wanna edit:");
+            printf("wrong card id , try again\n");
+            printf("which card you wanna edit:");
         }
     }
     printf("\n");
@@ -165,8 +165,8 @@ void Menu_edit(Head *head) {
         struct_out(node);
         printf("\n");
         printf("What do you wanna edit:\n");
-        printf("1 - name\n");
-        printf("2 - type\n");
+        printf("1 - section\n");
+        printf("2 - product\n");
         printf("3 - weight\n");
         printf("4 - calories\n");
         printf("5 - protein\n");
@@ -178,7 +178,7 @@ void Menu_edit(Head *head) {
         free(flag_temp);
         if (flag == 1) {
             do {
-                printf("New name:");
+                printf("New section:");
                 str = safe_scan_string();
                 printf("\n");
             } while (str == NULL);
@@ -187,7 +187,7 @@ void Menu_edit(Head *head) {
         }
         if (flag == 2) {
             do {
-                printf("New type:");
+                printf("New product:");
                 str = safe_scan_string();
                 printf("\n");
             } while (str == NULL);
@@ -262,14 +262,14 @@ void Menu_swap(Head *head) {
     clear();
     Print_Node(head);
     if (head->cnt > 1) {
-        printf("which node you wanna swap:\n");
+        printf("which card you wanna swap:\n");
         while ((first > head->cnt) || (first < 1)) {
             printf("First:\n");
             first_temp = safe_scan_int();
             first = strtol(first_temp, NULL, 10);
             free(first_temp);// считываем номер узла который нужно скопировать
             if (first > head->cnt || first < 1) {
-                printf("wrong node , try again\n");
+                printf("wrong card , try again\n");
             }
         }
         while ((second > head->cnt) || (second < 1)) {
@@ -278,14 +278,14 @@ void Menu_swap(Head *head) {
             second = strtol(second_temp, NULL, 10);
             free(second_temp);// считываем номер узла перед которым нужно вставить
             if (second > head->cnt || second < 1) {
-                printf("wrong node id , try again\n");
+                printf("wrong card id , try again\n");
             }
         }
         first_node = select_by_id(head, first);
         second_node = select_by_id(head, second);
         printf("\n");
         swap_node(head, first_node, second_node);
-    } else printf("You should have 2 or more nodes\n");
+    } else printf("You should have 2 or more card\n");
 }
 
 
@@ -560,7 +560,7 @@ Head *Menu_add_first() {
     clear();
     head = make_head();
     char **new_node = NULL;
-    printf("Add your first node\n");
+    printf("Add your first card\n");
     new_node = scan_node();
     head->first = create_node(new_node, 1);
     head->cnt = 1;
